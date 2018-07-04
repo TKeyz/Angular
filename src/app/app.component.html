@@ -1,0 +1,35 @@
+<header class="header">
+  <nav>
+    <li class="pointer glyphicon glyphicon-menu-hamburger" (click)="toggleSlideMenu()">
+      <i></i>
+    </li>
+    <li class="pointer" (click)="openSlideMenu($event)" *ngFor="let items of items" id="{{items.id}}">{{ items.name }}</li>
+  </nav>
+</header>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Hi guys,</h1>
+    <h2>{{description}}</h2>
+  </div>
+</div>
+
+<section class="menu-list" [@slideInOut]="menuState">
+  <ul class="sub-menu">
+    <li id="close-Menu" class="icon-menu pointer" (click)="closeSliderMenu($event)"></li>
+    <li class="pointer side-link icon-menu icon-{{items.id}}" *ngFor="let items of items; let i = index;" (click)="onSubSection($event)" id="sub-menu-{{ items.id }}">
+      {{ items.name }}
+      <div id="back-{{items.id}}" class="icon-menu back-button off" (click)="closeSubMenu($event)">Back</div>
+    </li>
+  </ul>
+  <nav class="sub-menu-section {{viewItems}}" [@swipeInOut]="viewItems">
+    <h1 id="title-section">{{menuTitle}}</h1>
+    <li *ngFor="let post of itemDisplayed" class="sub-menu-link">
+      <a href="{{post.href}}">
+        <img class="thumb" src="./assets/images/{{post.thumb}}">
+        <span>{{post.name}}</span>
+      </a>
+    </li>
+  </nav>
+</section>
+
+<div id="background" class="on" [@fadeInOut]="menuState"></div>
