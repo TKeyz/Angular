@@ -56,16 +56,15 @@ export class AppComponent {
 	menuTitle = '';
 
 	ngOnInit(): void {
-	    this.http.get(this.ROOT_URL).subscribe(data => {
+	    this.http.get(this.ROOT_URL).subscribe((data : any) => {
 	    	this.items = data.menu;
-	    },
-		(err: HttpErrorResponse) => {
+	    }/*,(err: HttpErrorResponse) => {
 			if (err.error instanceof Error) {
 				console.log("Client-side error occured.");
         	} else {
         		console.log("Server-side error occured.");
         	}
-        });
+        }*/);
 	}
 
 	onSubSection(event){
